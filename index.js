@@ -19,7 +19,7 @@ app.use(require('cors')())
 app.get("/products", async (req, res) => {
     // const products = await Product.find().skip(1).limit(2)
     const products = await Product.find().sort({
-        _id: -1
+        id: 1
     })
     res.send(products)
 })
@@ -42,6 +42,12 @@ app.put('/products/:id', async (req, res) => {
     await Product.updateOne({ id: req.params.id }, { title: req.body.title })
     const targetProduct = await Product.find({ id: req.params.id })
     res.send(targetProduct)
+})
+
+app.delete("/products/:id", async (req, res) => {
+    await Product.deleteOne({ id: req.params.id })
+    // const targetProduct = await Product.find({ id: req.params.id })
+    res.send({ success: true, message: "删除成功" })
 })
 
 app.listen(port, () => {
