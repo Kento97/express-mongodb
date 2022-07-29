@@ -1,24 +1,24 @@
 
-@uri=http://localhost:3000
-
-GET {{uri}}/products
-###
-GET {{uri}}/products/2
-###
-POST {{uri}}/products
-Content-Type: application/json
-
-{
-    "id":1,
-    "title": "产品1"
-}
-###
-PUT {{uri}}/products/1
-Content-Type: application/json
+@url=http://localhost:3000/api
+@json=Content-Type: application/json
+### 所有用户
+GET {{url}}/users
+### 注册
+POST {{url}}/register
+{{json}}
 
 {
-    "title": "产品1"
+    "username":"user3",
+    "password":"123456"
 }
-###
-DELETE {{uri}}/products/1
-###
+### 登录
+POST {{url}}/login
+{{json}}
+
+{
+    "username":"user3",
+    "password":"123456"
+}
+### 个人信息
+GET {{url}}/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTNhNDYyMzRkNTM1MzAzOTk5OTM0ZSIsImlhdCI6MTY1OTA4ODg3MH0.MKh4aLFmyJSsOtucLF3xWScDE4PgbjCEiFXv3YdZ5xM
